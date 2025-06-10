@@ -14,7 +14,9 @@ Se pretende agregar a futuro:
 ---
 
 ## Demo
+Deployed on Vercel
+Here is the link:
+to-do-app-react-beta-gray.vercel.app
 
-[Agrega aquí el enlace una vez deplegdo en Netlify, Vercel, GitHub Pages, etc.]
 
 ---
