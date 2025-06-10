@@ -1,23 +1,21 @@
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>
+          TO-DO App under construction.
+        </p>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Please check back later!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <footer className="App-footer">
+        © 2025 Kerosh dev
+      </footer>
     </div>
   );
 }
