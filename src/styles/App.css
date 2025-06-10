@@ -44,3 +44,53 @@
   text-align: center;
   font-size: 1rem;
 }
+
+
+:root {
+  --bg: #f0f0f0;
+  --text: #333;
+  --accent: #4caf50;
+  --completed: #aaa;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: #eee;
+  --accent: #81c784;
+  --completed: #555;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.app {
+  max-width: 500px;
+  margin: auto;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 10px;
+  border: 1px solid var(--accent);
+  margin-top: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: var(--completed);
+}
+
+.todo-form input {
+  width: 70%;
+  padding: 10px;
+  margin-right: 10px;
+}
