@@ -99,14 +99,13 @@ function App() {
             onClick={() => setAboutDropdownOpen((open) => !open)}
             style={{ userSelect: "none" }}>
           <button
-                  className="menu-btn"
-                  onClick={() => {
-                    setShowAbout(true);
-                    setAboutDropdownOpen(false);
-                  }}
-                >
-                  Sobre el desarrollador
-                </button>
+            className="menu-btn"
+            onClick={() => {
+              setShowAbout(true);
+              setAboutDropdownOpen(false);
+            }}>
+            About
+          </button>
         </li>
       </ul>
     </nav>
