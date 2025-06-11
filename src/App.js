@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext} from "react";
 import ToDoList from "./components/ToDoList";
 import ToDoForm from "./components/ToDoForm";
+import AboutPage from "./components/AboutPage";
 import "./styles/App.css";
 import { ThemeContext } from "./themes/ThemeContext";
 
@@ -40,10 +41,13 @@ function App() {
   const { toggleDarkMode, dark } = useContext(ThemeContext);
 
   // MENU BAR
-  // Dropdown state for View menu
-  // This state controls whether the dropdown menu is open or closed
-  // It is initialized to false, meaning the dropdown is closed by default
+ 
+  // Dropdown state for View and About menus
   const [viewDropdownOpen, setViewDropdownOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  
+  // Agrega este estado para controlar la pantalla About
+  const [showAbout, setShowAbout] = useState(false);
 
   // Close dropdown when clicking outside
   // This effect adds an event listener to the document to close the dropdown
@@ -55,10 +59,12 @@ function App() {
       // The `closest` method checks if the clicked element is inside the view menu
       if (!e.target.closest('.view-menu')) 
         setViewDropdownOpen(false);
+      if (!e.target.closest('.about-menu')) 
+        setAboutDropdownOpen(false);
     };
     
     // If the dropdown is open, add the event listener to handle clicks outside
-    if (viewDropdownOpen) {
+    if (viewDropdownOpen || aboutDropdownOpen) {
       // Add the event listener to the document
       document.addEventListener('mousedown', handleClick);
     }
@@ -67,9 +73,7 @@ function App() {
     // This prevents memory leaks and ensures the event listener is not active when not needed
     // This is important for performance and to avoid unexpected behavior
     return () => document.removeEventListener('mousedown', handleClick);
-  }, [viewDropdownOpen]);
-
-
+  }, [viewDropdownOpen, aboutDropdownOpen]);
 
   // Render the main application component
   return (
@@ -81,25 +85,46 @@ function App() {
 
         <li className="menu-item view-menu"
             onClick={() => setViewDropdownOpen((open) => !open)}
-            style={{ userSelect: "none" }}
-        >
+            style={{ userSelect: "none" }}>
           View
-          
           <ul className="dropdown" style={{ display: viewDropdownOpen ? "block" : "none" }}>
             <li>
-              <button className="dark-mode-menu-btn" onClick={toggleDarkMode}>
+              <button className="menu-btn" onClick={toggleDarkMode}>
                 {dark ? "Light Mode" : "Dark Mode"}
               </button>
             </li>
           </ul>
         </li>
-        
-        <li className="menu-item">About</li>
+        <li className="menu-item about-menu"
+            onClick={() => setAboutDropdownOpen((open) => !open)}
+            style={{ userSelect: "none" }}>
+          <button
+                  className="menu-btn"
+                  onClick={() => {
+                    setShowAbout(true);
+                    setAboutDropdownOpen(false);
+                  }}
+                >
+                  Sobre el desarrollador
+                </button>
+        </li>
       </ul>
     </nav>
-      <h1>My Tasks</h1>
-      <ToDoForm addToDo={addToDo} />
-      <ToDoList todos={todos} toggleComplete={toggleComplete} deleteTodo={deleteTodo} />
+    {showAbout ? (
+        <AboutPage onBack={() => setShowAbout(false)} />
+      ) : (
+        <>
+          <div className="header-container">
+            <h1>My Tasks</h1>
+          </div>
+          <ToDoForm addToDo={addToDo} />
+          <ToDoList
+            todos={todos}
+            toggleComplete={toggleComplete}
+            deleteTodo={deleteTodo}
+          />
+        </>
+      )}
     </div>
   );
 }

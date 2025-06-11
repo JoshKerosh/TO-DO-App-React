@@ -28,7 +28,8 @@ export const ThemeProvider = ({ children }) => {
     // Function to toggle dark mode state
   const toggleDarkMode = () => setDark(!dark);
 
-  
+
+    // Provide the dark mode state and toggle function to the context
   return (
     <ThemeContext.Provider value={{ dark, toggleDarkMode }}>
       {children}

@@ -22,7 +22,7 @@ const ToDoForm = ({ addToDo }) => {
 
     // Render the form with an input field and a submit button
   return (
-    <form onSubmit={handleSubmit} className="todo-form">
+    <form name="todo-form" onSubmit={handleSubmit} className="todo-form">
       <input
         type="text"
         value={text}
